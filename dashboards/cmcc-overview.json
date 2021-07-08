@@ -1,0 +1,2725 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "from": "",
+                "id": 1,
+                "text": "online",
+                "to": "",
+                "type": 1,
+                "value": "3"
+              },
+              {
+                "from": "",
+                "id": 2,
+                "text": "administration",
+                "to": "",
+                "type": 1,
+                "value": "2"
+              },
+              {
+                "from": "",
+                "id": 3,
+                "text": "maintenance",
+                "to": "",
+                "type": 1,
+                "value": "1"
+              },
+              {
+                "from": "",
+                "id": 4,
+                "text": "offline",
+                "to": "",
+                "type": 1,
+                "value": "0"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                },
+                {
+                  "color": "dark-yellow",
+                  "value": 1
+                },
+                {
+                  "color": "dark-yellow",
+                  "value": 2
+                },
+                {
+                  "color": "dark-green",
+                  "value": 3
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 13,
+          "x": 0,
+          "y": 0
+        },
+        "id": 4,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_Server_RunLevelNumeric{app_kubernetes_io_instance=\"$instance\", kubernetes_namespace=\"$namespace\"}",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{app_kubernetes_io_app_type}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "title": "ContentServer Runlevel",
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 11,
+          "x": 13,
+          "y": 0
+        },
+        "id": 10,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_Server_LicenseValidUntilSoft - ((time())*1000)",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{app_kubernetes_io_name}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "title": "License valid for (Soft)",
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                },
+                {
+                  "color": "dark-green",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 24,
+          "x": 0,
+          "y": 5
+        },
+        "id": 13,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {
+            "valueSize": 22
+          },
+          "textMode": "name"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "up{kubernetes_namespace=\"$namespace\"}",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{app_kubernetes_io_name}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "title": "Exporter Status",
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 0,
+          "y": 12
+        },
+        "id": 6,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_Server_RepositorySequenceNumber{app_kubernetes_io_instance=\"$instance\",kubernetes_namespace=\"$namespace\",app_kubernetes_io_name=\"content-management-server\"}",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "CMS Sequence Nr",
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 3,
+          "y": 12
+        },
+        "id": 11,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_Server_RepositorySequenceNumber{app_kubernetes_io_instance=\"$instance\",kubernetes_namespace=\"$namespace\",app_kubernetes_io_name=\"master-live-server\"}",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "MLS Sequence Nr",
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "from": "",
+                "id": 1,
+                "text": "Current",
+                "to": "",
+                "type": 1,
+                "value": "0"
+              },
+              {
+                "from": "1",
+                "id": 2,
+                "text": "Catching Up",
+                "to": "",
+                "type": 2
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 6,
+          "y": 12
+        },
+        "id": 8,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_Server_RepositorySequenceNumber{app_kubernetes_io_instance=\"$instance\",kubernetes_namespace=\"$namespace\",app_kubernetes_io_name=\"master-live-server\"} - on(pod)group_right com_coremedia_Replicator_LatestCompletedSequenceNumber{app_kubernetes_io_instance=\"$instance\",kubernetes_namespace=\"$namespace\",app_kubernetes_io_app_type=\"replication-live-server\"}",
+            "hide": false,
+            "instant": false,
+            "interval": "",
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "RLS Replication",
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "from": "",
+                "id": 1,
+                "text": "OK",
+                "to": "",
+                "type": 1,
+                "value": "3"
+              },
+              {
+                "from": "0",
+                "id": 2,
+                "text": "WARN",
+                "to": "3",
+                "type": 2
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "semi-dark-orange",
+                  "value": 2
+                },
+                {
+                  "color": "green",
+                  "value": 3
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 9,
+          "y": 12
+        },
+        "id": 15,
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/2uHGDWm7z/overview-cap-clients?orgId=1&refresh=5s&var-instance=$instance&var-app=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_CapConnection_Stable\n+ com_coremedia_CapConnection_WorkflowRepositoryHealthy\n+ com_coremedia_CapConnection_ContentRepositoryHealthy)",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "title": "CapConnections",
+        "type": "stat"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 15
+        },
+        "id": 19,
+        "panels": [],
+        "title": "JVMs",
+        "type": "row"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 0,
+          "y": 16
+        },
+        "id": 2,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeat": "app",
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "cae-feeder-live",
+            "value": "cae-feeder-live"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 6,
+          "y": 16
+        },
+        "id": 20,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeatIteration": 1625680740264,
+        "repeatPanelId": 2,
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "cae-feeder-preview",
+            "value": "cae-feeder-preview"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 12,
+          "y": 16
+        },
+        "id": 21,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeatIteration": 1625680740264,
+        "repeatPanelId": 2,
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "cae-live-cmcc",
+            "value": "cae-live-cmcc"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 18,
+          "y": 16
+        },
+        "id": 22,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeatIteration": 1625680740264,
+        "repeatPanelId": 2,
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "cae-preview",
+            "value": "cae-preview"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 0,
+          "y": 21
+        },
+        "id": 23,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeatIteration": 1625680740264,
+        "repeatPanelId": 2,
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "content-feeder",
+            "value": "content-feeder"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 6,
+          "y": 21
+        },
+        "id": 24,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeatIteration": 1625680740264,
+        "repeatPanelId": 2,
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "elastic-worker",
+            "value": "elastic-worker"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 12,
+          "y": 21
+        },
+        "id": 25,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeatIteration": 1625680740264,
+        "repeatPanelId": 2,
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "headless-server-live-cmcc",
+            "value": "headless-server-live-cmcc"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 18,
+          "y": 21
+        },
+        "id": 26,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeatIteration": 1625680740264,
+        "repeatPanelId": 2,
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "headless-server-preview",
+            "value": "headless-server-preview"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 0,
+          "y": 26
+        },
+        "id": 27,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeatIteration": 1625680740264,
+        "repeatPanelId": 2,
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "studio-server",
+            "value": "studio-server"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 6,
+          "y": 26
+        },
+        "id": 28,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeatIteration": 1625680740264,
+        "repeatPanelId": 2,
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "user-changes",
+            "value": "user-changes"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      },
+      {
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 0.7
+                },
+                {
+                  "color": "red",
+                  "value": 0.85
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Threads"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 110
+                      },
+                      {
+                        "color": "red",
+                        "value": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uptime"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdhms"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "super-light-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "APP"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "$app"
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "from": "0",
+                      "id": 1,
+                      "text": "",
+                      "to": "100000",
+                      "type": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 12,
+          "y": 26
+        },
+        "id": 29,
+        "interval": "3m",
+        "links": [
+          {
+            "title": "Details",
+            "url": "/d/M-Ya5WPMz/jvm-details?orgId=1&var-cluster=$cluster&var-instance=$instance&var-app=$app&var-pod=All"
+          }
+        ],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "repeatIteration": 1625680740264,
+        "repeatPanelId": 2,
+        "scopedVars": {
+          "app": {
+            "selected": false,
+            "text": "workflow-server",
+            "value": "workflow-server"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Uptime",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg_over_time(jvm_memory_bytes_used{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", area=\"heap\"}[30m])\n/avg_over_time(jvm_memory_bytes_max{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}[30m])",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "HeapUsage [30m]",
+            "refId": "Heap"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(jvm_threads_current{kubernetes_namespace=\"$namespace\", app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"})",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "Threads",
+            "refId": "Threads"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "$app",
+        "transformations": [],
+        "type": "stat"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "Prometheus",
+            "value": "Prometheus"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "cluster",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "cmcc",
+            "value": "cmcc"
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(com_coremedia_Server_RunLevelNumeric{}, kubernetes_namespace)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Namespace",
+          "multi": false,
+          "name": "namespace",
+          "options": [],
+          "query": {
+            "query": "label_values(com_coremedia_Server_RunLevelNumeric{}, kubernetes_namespace)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "cmcc",
+            "value": "cmcc"
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(up{kubernetes_namespace=\"$namespace\"}, app_kubernetes_io_instance)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "instance",
+          "options": [],
+          "query": {
+            "query": "label_values(up{kubernetes_namespace=\"$namespace\"}, app_kubernetes_io_instance)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(com_coremedia_CapConnection_Open{app_kubernetes_io_instance=\"$instance\"}, app_kubernetes_io_name)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "app",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "cae-feeder-live",
+              "value": "cae-feeder-live"
+            },
+            {
+              "selected": false,
+              "text": "cae-feeder-preview",
+              "value": "cae-feeder-preview"
+            },
+            {
+              "selected": false,
+              "text": "cae-live-cmcc",
+              "value": "cae-live-cmcc"
+            },
+            {
+              "selected": false,
+              "text": "cae-preview",
+              "value": "cae-preview"
+            },
+            {
+              "selected": false,
+              "text": "content-feeder",
+              "value": "content-feeder"
+            },
+            {
+              "selected": false,
+              "text": "elastic-worker",
+              "value": "elastic-worker"
+            },
+            {
+              "selected": false,
+              "text": "headless-server-live-cmcc",
+              "value": "headless-server-live-cmcc"
+            },
+            {
+              "selected": false,
+              "text": "headless-server-preview",
+              "value": "headless-server-preview"
+            },
+            {
+              "selected": false,
+              "text": "studio-server",
+              "value": "studio-server"
+            },
+            {
+              "selected": false,
+              "text": "user-changes",
+              "value": "user-changes"
+            },
+            {
+              "selected": false,
+              "text": "workflow-server",
+              "value": "workflow-server"
+            }
+          ],
+          "query": {
+            "query": "label_values(com_coremedia_CapConnection_Open{app_kubernetes_io_instance=\"$instance\"}, app_kubernetes_io_name)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-15m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "CMCC Overview",
+    "uid": "pormKHgnz",
+    "version": 1
+  }

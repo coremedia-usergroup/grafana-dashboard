@@ -1,0 +1,892 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "links": [],
+    "panels": [
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "${cluster}",
+        "description": "Capacity for this cache class (in class specific weight) (com.coremedia<type=Cache.Classes, CacheClass=\"com.coremedia.livecontext.ecommerce.cache.MarketingSpot\", application=blueprint><>Capacity)",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 4,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:86",
+            "alias": "Utilization % [1m]",
+            "bars": true,
+            "color": "#8F3BB8",
+            "lines": false,
+            "yaxis": 2,
+            "zindex": -1
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_Capacity{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass'})",
+            "instant": false,
+            "interval": "",
+            "legendFormat": "Capacity",
+            "queryType": "randomWalk",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_Level{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass'})",
+            "interval": "",
+            "legendFormat": "Current",
+            "refId": "B"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_Utilization{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass'})",
+            "interval": "",
+            "legendFormat": "Utilization % [1m]",
+            "refId": "C"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Cache Utilization %",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:101",
+            "format": "bytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:102",
+            "format": "percent",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "description": "Evaluate, Evict, Update, Remove, Errors\nPer Second ",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 11,
+          "x": 12,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 6,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "rate(com_coremedia_Cache_Classes_Evaluated{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"}[3m])",
+            "interval": "",
+            "legendFormat": "Evaluated",
+            "queryType": "randomWalk",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(rate(com_coremedia_Cache_Classes_Evicted{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"}[3m]))",
+            "instant": false,
+            "interval": "",
+            "legendFormat": "Evicted",
+            "refId": "B"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(rate(com_coremedia_Cache_Classes_Updated{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"}[3m]))",
+            "interval": "",
+            "legendFormat": "Updated",
+            "refId": "C"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(rate(com_coremedia_Cache_EvaluationErrors{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"}[3m]))",
+            "interval": "",
+            "legendFormat": "EvaluationErrors",
+            "refId": "D"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(rate(com_coremedia_Cache_Classes_Removed{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"}[3m]))",
+            "interval": "",
+            "legendFormat": "Removed",
+            "refId": "E"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "CacheOperations",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1495",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1496",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "description": "Average time spent to evaluate keys of this class, taking into account all evaluations [ms] (com.coremedia<type=Cache.Classes, CacheClass=\"com.coremedia.livecontext.ecommerce.cache.MarketingSpot\", application=blueprint><>AverageEvaluationTime)",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 7,
+          "x": 0,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 8,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_AverageEvaluationTime{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "Average EvaluationTime",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Avg. EvaluationTime",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1691",
+            "format": "ms",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1692",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "description": "weight (Evictions/Insertions/Miss/Removal) per minute [1 minute Average]",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 7,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:1780",
+            "alias": "Utilization",
+            "yaxis": 2
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_EvictionRate{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "EvictionRate [1m]",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_InsertionRate{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "InsertionRate [1m]",
+            "refId": "B"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_MissRate{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "MissRate [1m]",
+            "refId": "C"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_RemovalRate{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "RemovalRate [1m]",
+            "refId": "D"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Cache Statistics [1m]",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1787",
+            "format": "percent",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1788",
+            "format": "percent",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "description": "weight (Evictions/Insertions/Miss/Removal) per minute [5 minute Average]",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 15,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 9,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:1814",
+            "alias": "Utilization",
+            "yaxis": 2
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_EvictionRate5m{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "EvictionRate [5m]",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_InsertionRate5m{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "InsertionRate [5m]",
+            "refId": "B"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_MissRate5m{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "MissRate [5m]",
+            "refId": "C"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_Cache_Classes_RemovalRate5m{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",CacheClass='$CacheClass',kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "RemovalRate [5m]",
+            "refId": "D"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Cache Statistics [5m]",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1821",
+            "format": "percent",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1822",
+            "format": "percent",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "${cluster}",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 18
+        },
+        "hiddenSeries": false,
+        "id": 11,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(rate(com_coremedia_Cache_EvaluationErrors{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",kubernetes_pod_name=~\"$pod\"}[3m]))by(kubernetes_pod_name)",
+            "interval": "",
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "EvaluationErrors (All Caches)",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1607",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1608",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "Prometheus",
+            "value": "Prometheus"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "cluster",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "cmcc",
+            "value": "cmcc"
+          },
+          "datasource": "$cluster",
+          "definition": "label_values(com_coremedia_Cache_Classes_Capacity{},app_kubernetes_io_instance)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "instance",
+          "options": [],
+          "query": {
+            "query": "label_values(com_coremedia_Cache_Classes_Capacity{},app_kubernetes_io_instance)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "cae-preview",
+            "value": "cae-preview"
+          },
+          "datasource": "$cluster",
+          "definition": "label_values(com_coremedia_Cache_Classes_Capacity{app_kubernetes_io_instance=\"$instance\"}, app_kubernetes_io_name)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "app",
+          "options": [],
+          "query": {
+            "query": "label_values(com_coremedia_Cache_Classes_Capacity{app_kubernetes_io_instance=\"$instance\"}, app_kubernetes_io_name)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": ".*",
+          "current": {
+            "selected": true,
+            "tags": [],
+            "text": [
+              "cae-preview-0"
+            ],
+            "value": [
+              "cae-preview-0"
+            ]
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(com_coremedia_Cache_Classes_Capacity{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"},kubernetes_pod_name)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "pod",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": true,
+              "text": "cae-preview-0",
+              "value": "cae-preview-0"
+            }
+          ],
+          "query": {
+            "query": "label_values(com_coremedia_Cache_Classes_Capacity{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"},kubernetes_pod_name)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "\"DIGEST\"",
+            "value": "\"DIGEST\""
+          },
+          "datasource": "$cluster",
+          "definition": "label_values(com_coremedia_Cache_Classes_Capacity{app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\",kubernetes_pod_name=~\"$pod\"}, CacheClass)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "CacheClass",
+          "options": [],
+          "query": {
+            "query": "label_values(com_coremedia_Cache_Classes_Capacity{app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\",kubernetes_pod_name=~\"$pod\"}, CacheClass)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-3h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Cache Class Details",
+    "uid": "gi3R8DrGk",
+    "version": 1
+  }

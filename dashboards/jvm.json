@@ -1,0 +1,1826 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "JVM Dashboard for Kubernetes Monitoring with Prometheus",
+    "editable": true,
+    "gnetId": 11131,
+    "graphTooltip": 0,
+    "id": 18,
+    "iteration": 1625669942070,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 38,
+        "panels": [],
+        "repeat": "pod",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "title": "$pod JVM Metrics",
+        "type": "row"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#299c46",
+          "rgba(237, 129, 40, 0.89)",
+          "#d44a3a"
+        ],
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "format": "none",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 1
+        },
+        "id": 6,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false,
+          "ymax": null,
+          "ymin": null
+        },
+        "tableColumn": "jdk",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "label_join(jvm_info{app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", kubernetes_pod_name=~\"$pod\"}, \"jdk\", \", \", \"vendor\", \"app_kubernetes_io_nametime\", \"version\")",
+            "format": "table",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "refId": "A"
+          }
+        ],
+        "thresholds": "",
+        "timeShift": null,
+        "title": "JVM Version",
+        "type": "singlestat",
+        "valueFontSize": "50%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "first"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "rgba(255, 255, 255, 0.85)",
+              "mode": "fixed"
+            },
+            "decimals": 0,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "dtdhms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 6,
+          "y": 1
+        },
+        "id": 4,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "time() - process_start_time_seconds{app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", kubernetes_pod_name=~\"$pod\"}  ",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "refId": "A"
+          }
+        ],
+        "timeShift": null,
+        "title": "Uptime",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "rgb(255, 255, 255)",
+              "mode": "fixed"
+            },
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "dateTimeAsIso"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 10,
+          "y": 1
+        },
+        "id": 5,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "targets": [
+          {
+            "expr": "process_start_time_seconds{app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\", kubernetes_pod_name=~\"$pod\"}*1000",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "refId": "A"
+          }
+        ],
+        "timeShift": null,
+        "title": "Start Time",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 2,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "No Requests",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 16,
+          "y": 1
+        },
+        "id": 2,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value_and_name"
+        },
+        "pluginVersion": "7.5.5",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(kube_pod_container_resource_requests_cpu_cores{namespace=\"$namespace\", pod=~\"$pod\"})",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{container}}",
+            "refId": "A"
+          }
+        ],
+        "title": "Total CPU Cores",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 2,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "no requests",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 20,
+          "y": 1
+        },
+        "id": 3,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(kube_pod_container_resource_limits_memory_bytes{namespace=\"$namespace\", pod=\"$pod\"})by(container)",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{container}}",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Total Memory",
+        "type": "stat"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 12,
+          "x": 0,
+          "y": 5
+        },
+        "hiddenSeries": false,
+        "id": 12,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "repeat": null,
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "seriesOverrides": [
+          {
+            "alias": "/.*Usage %/",
+            "bars": true,
+            "color": "#6d1f62",
+            "lines": false,
+            "yaxis": 2,
+            "zindex": -1
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=\"$pod\", container!=\"POD\", image!=\"\"}[3m]))by(container)",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{container}} Usage",
+            "refId": "A",
+            "step": 20
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(rate(container_cpu_system_seconds_total{namespace=\"$namespace\", pod=\"$pod\", container!=\"POD\", image!=\"\"}[3m]))by(container)",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{container}} System",
+            "refId": "B",
+            "step": 20
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(rate(container_cpu_user_seconds_total{namespace=\"$namespace\", pod=\"$pod\", container!=\"POD\", image!=\"\"}[3m]))by(container)",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{container}} User",
+            "refId": "C",
+            "step": 20
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=\"$pod\", container!=\"POD\", image!=\"\"}[3m]) )by(container)\n/ on(container,pod) \navg(kube_pod_container_resource_requests_cpu_cores{namespace=\"$namespace\", pod=\"$pod\", container!=\"POD\"})by(container)",
+            "format": "time_series",
+            "hide": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{container}} Usage %",
+            "refId": "D",
+            "step": 20
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "CPU Usage Timeline [3m]",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:55",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:56",
+            "decimals": 1,
+            "format": "percentunit",
+            "label": "",
+            "logBase": 1,
+            "max": "1",
+            "min": "0",
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 12,
+          "x": 12,
+          "y": 5
+        },
+        "hiddenSeries": false,
+        "id": 14,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "seriesOverrides": [
+          {
+            "alias": "/.*Limit/",
+            "dashes": true,
+            "fill": 0,
+            "legend": false,
+            "zindex": -1
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "container_memory_working_set_bytes{namespace=\"$namespace\", pod=\"$pod\", container!=\"POD\", image!=\"\"} ",
+            "format": "time_series",
+            "instant": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{container}} Usage",
+            "refId": "A",
+            "step": 20
+          },
+          {
+            "exemplar": true,
+            "expr": "container_spec_memory_limit_bytes{namespace=\"$namespace\", pod=\"$pod\", container!=\"POD\", image!=\"\"}",
+            "format": "time_series",
+            "instant": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{container}} Limit",
+            "refId": "B",
+            "step": 20
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Memory Usage Timeline",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:287",
+            "decimals": 1,
+            "format": "bytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:288",
+            "decimals": 1,
+            "format": "percentunit",
+            "label": "",
+            "logBase": 1,
+            "max": "1",
+            "min": "0",
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 0,
+          "y": 12
+        },
+        "hiddenSeries": false,
+        "id": 21,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:57",
+            "alias": "Usage %",
+            "bars": true,
+            "color": "#6d1f62",
+            "legend": false,
+            "lines": false,
+            "yaxis": 2,
+            "zindex": -1
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "jvm_memory_bytes_used{app_kubernetes_io_instance=\"$instance\", area=\"heap\",kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Used",
+            "refId": "A"
+          },
+          {
+            "expr": " jvm_memory_bytes_committed{app_kubernetes_io_instance=\"$instance\", area=\"heap\",kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Committed",
+            "refId": "B"
+          },
+          {
+            "expr": " jvm_memory_bytes_max{app_kubernetes_io_instance=\"$instance\", area=\"heap\",kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Max",
+            "refId": "C"
+          },
+          {
+            "exemplar": true,
+            "expr": "jvm_memory_bytes_used{app_kubernetes_io_instance=\"$instance\", area=\"heap\",kubernetes_pod_name=~\"$pod\"}/jvm_memory_bytes_max{app_kubernetes_io_instance=\"$instance\", area=\"heap\",kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Usage %",
+            "refId": "D"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "JVM Memory Area (Heap)",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:74",
+            "format": "decbytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:75",
+            "decimals": 1,
+            "format": "percentunit",
+            "label": "",
+            "logBase": 1,
+            "max": "1",
+            "min": "0",
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 8,
+          "y": 12
+        },
+        "hiddenSeries": false,
+        "id": 22,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "jvm_memory_bytes_used{app_kubernetes_io_instance=\"$instance\", area=\"nonheap\",kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Used",
+            "refId": "A"
+          },
+          {
+            "expr": " jvm_memory_bytes_committed{app_kubernetes_io_instance=\"$instance\", area=\"nonheap\",kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Committed",
+            "refId": "B"
+          },
+          {
+            "expr": "java_nio_direct_MemoryUsed{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=~\"$pod\"}",
+            "interval": "",
+            "legendFormat": "DirectByteBuffers",
+            "refId": "C"
+          },
+          {
+            "expr": "java_nio_mapped_MemoryUsed{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=\"$pod\"}",
+            "interval": "",
+            "legendFormat": "MappedByteBuffers",
+            "refId": "D"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "JVM Memory Area (Non-Heap)",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "decbytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 16,
+          "y": 12
+        },
+        "hiddenSeries": false,
+        "id": 23,
+        "legend": {
+          "alignAsTable": false,
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": false,
+          "show": true,
+          "sortDesc": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "jvm_memory_pool_bytes_used{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 2,
+            "legendFormat": "{{pool}}",
+            "refId": "A",
+            "step": 20
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "JVM Memory Pool",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "decbytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 6,
+          "x": 0,
+          "y": 19
+        },
+        "hiddenSeries": false,
+        "id": 31,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "jvm_threads_current{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 5,
+            "legendFormat": "Current",
+            "refId": "A",
+            "step": 50
+          },
+          {
+            "expr": " jvm_threads_daemon{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 5,
+            "legendFormat": "Daemon",
+            "refId": "B",
+            "step": 50
+          },
+          {
+            "expr": " jvm_threads_peak{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 5,
+            "legendFormat": "Peak",
+            "refId": "C",
+            "step": 50
+          },
+          {
+            "expr": " jvm_threads_deadlocked{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 5,
+            "legendFormat": "Deadlocked",
+            "refId": "D",
+            "step": 50
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "JVM Threads used",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 6,
+          "x": 6,
+          "y": 19
+        },
+        "hiddenSeries": false,
+        "id": 32,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "jvm_classes_loaded{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 5,
+            "legendFormat": "Loaded",
+            "refId": "A",
+            "step": 50
+          },
+          {
+            "expr": " jvm_classes_loaded_total{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=~\"$pod\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 5,
+            "legendFormat": "Total",
+            "refId": "B",
+            "step": 50
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "JVM Class Loading",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 2,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 6,
+          "x": 12,
+          "y": 19
+        },
+        "hiddenSeries": false,
+        "id": 33,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "rate(jvm_gc_collection_seconds_sum{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=~\"$pod\"}[3m])",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 5,
+            "legendFormat": "{{gc}}",
+            "refId": "A",
+            "step": 25
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "JVM GC Time [3m]",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "s",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "decimals": 1,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 6,
+          "x": 18,
+          "y": 19
+        },
+        "hiddenSeries": false,
+        "id": 34,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "scopedVars": {
+          "pod": {
+            "selected": false,
+            "text": "cae-preview-0",
+            "value": "cae-preview-0"
+          }
+        },
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "increase(jvm_gc_collection_seconds_count{app_kubernetes_io_instance=\"$instance\", kubernetes_pod_name=~\"$pod\"}[3m])",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{gc}}",
+            "refId": "A",
+            "step": 10
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "JVM GC Count Increase [3m]",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": true,
+            "text": "Prometheus",
+            "value": "Prometheus"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "cluster",
+          "options": [],
+          "query": "prometheus",
+          "queryValue": "",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "cmcc",
+            "value": "cmcc"
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(com_coremedia_CapConnection_Open{},app_kubernetes_io_instance)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Instance",
+          "multi": false,
+          "name": "instance",
+          "options": [
+            {
+              "selected": true,
+              "text": "cmcc",
+              "value": "cmcc"
+            }
+          ],
+          "query": {
+            "query": "label_values(com_coremedia_CapConnection_Open{},app_kubernetes_io_instance)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "cae-preview",
+            "value": "cae-preview"
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(jvm_info{app_kubernetes_io_instance=\"$instance\"}, app_kubernetes_io_name)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "App",
+          "multi": false,
+          "name": "app",
+          "options": [],
+          "query": {
+            "query": "label_values(jvm_info{app_kubernetes_io_instance=\"$instance\"}, app_kubernetes_io_name)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": "",
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(jvm_info{app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}, kubernetes_pod_name)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Pod",
+          "multi": true,
+          "name": "pod",
+          "options": [],
+          "query": {
+            "query": "label_values(jvm_info{app_kubernetes_io_instance=\"$instance\", app_kubernetes_io_name=\"$app\"}, kubernetes_pod_name)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "cmcc",
+            "value": "cmcc"
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(jvm_info{app_kubernetes_io_instance=\"$instance\"}, kubernetes_namespace)",
+          "description": null,
+          "error": null,
+          "hide": 2,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "namespace",
+          "options": [
+            {
+              "selected": true,
+              "text": "cmcc",
+              "value": "cmcc"
+            }
+          ],
+          "query": {
+            "query": "label_values(jvm_info{app_kubernetes_io_instance=\"$instance\"}, kubernetes_namespace)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-3h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "browser",
+    "title": "JVM - Details",
+    "uid": "M-Ya5WPMz",
+    "version": 11
+  }

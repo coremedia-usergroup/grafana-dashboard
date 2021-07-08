@@ -1,0 +1,1345 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [
+              {
+                "from": "",
+                "id": 1,
+                "text": "online",
+                "to": "",
+                "type": 1,
+                "value": "1"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 0.5
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 0,
+          "y": 0
+        },
+        "id": 29,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "repeat": null,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_CapConnection_Open{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"}\r",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "CapConnection",
+        "type": "stat"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 18,
+          "x": 5,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 21,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:85",
+            "alias": "Max",
+            "color": "#B877D9",
+            "fillGradient": 1
+          },
+          {
+            "$$hashKey": "object:86",
+            "alias": "Current",
+            "color": "#8F3BB8",
+            "fill": 4
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_CapConnection_HeapCacheSize{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "Max",
+            "queryType": "randomWalk",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_CapConnection_HeapCacheLevel{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "Current",
+            "refId": "B"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "HeapCache Usage",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:103",
+            "format": "bytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:104",
+            "format": "none",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "$cluster",
+        "description": "Signals if the content repository is healthy. This is a value derived from ContentRepositoryRequired and ContentRepositoryAvailable (see JavaDoc for details).\n",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              },
+              {
+                "id": 1,
+                "op": "=",
+                "text": "OK",
+                "type": 1,
+                "value": "1"
+              },
+              {
+                "id": 2,
+                "op": "=",
+                "text": "ERROR",
+                "type": 1,
+                "value": "0"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#d44a3a",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 0.1
+                },
+                {
+                  "color": "#299c46",
+                  "value": 0.5
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 0,
+          "y": 3
+        },
+        "id": 4,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_CapConnection_ContentRepositoryHealthy{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"}",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "ContentRepositoryHealthy",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "$cluster",
+        "description": "Signals if the workflow repository is healthy. This is a value derived from WorkflowRepositoryRequired and WorkflowRepositoryAvailable (see JavaDoc for details).",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              },
+              {
+                "id": 1,
+                "op": "=",
+                "text": "OK",
+                "type": 1,
+                "value": "1"
+              },
+              {
+                "id": 2,
+                "op": "=",
+                "text": "ERROR",
+                "type": 1,
+                "value": "0"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#d44a3a",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 0.1
+                },
+                {
+                  "color": "#299c46",
+                  "value": 0.5
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 0,
+          "y": 6
+        },
+        "id": 7,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_CapConnection_WorkflowRepositoryHealthy{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"}",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "WorkflowRepositoryHealthy",
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "$cluster",
+        "description": "Signals if the caplist repository is healthy. This is a value derived from CapListRepositoryRequired and CapListRepositoryAvailable (see JavaDoc\nfor details).",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              },
+              {
+                "id": 1,
+                "op": "=",
+                "text": "ERROR",
+                "type": 1,
+                "value": "0"
+              },
+              {
+                "id": 2,
+                "op": "=",
+                "text": "OK",
+                "type": 1,
+                "value": "1"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#d44a3a",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 0.1
+                },
+                {
+                  "color": "#299c46",
+                  "value": 0.9
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 0,
+          "y": 9
+        },
+        "id": 6,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_CapConnection_CapListRepositoryHealthy{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"}",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "CapListRepositoryHealthy",
+        "type": "stat"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "description": "the number of bytes of disk space that is currently used for caching blobs",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 18,
+          "x": 5,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:158",
+            "alias": "Max",
+            "color": "#8AB8FF",
+            "fillGradient": 2
+          },
+          {
+            "$$hashKey": "object:159",
+            "alias": "Current",
+            "color": "#1F60C4"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_CapConnection_BlobCacheSize{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "Max",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_CapConnection_BlobCacheLevel{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "Current",
+            "refId": "B"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "BlobCache Usage",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:174",
+            "format": "bytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:175",
+            "format": "none",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "datasource": "$cluster",
+        "description": "the blob size threshold for streaming, in bytes (com.coremedia<type=CapConnection, application=blueprint><>BlobStreamingSizeThreshold)",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "super-light-blue",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 0,
+          "y": 12
+        },
+        "id": 19,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_CapConnection_BlobStreamingSizeThreshold{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"})",
+            "interval": "",
+            "legendFormat": "{{kuberntes_pod_name}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "BlobStreamingSizeThreshold",
+        "type": "stat"
+      },
+      {
+        "datasource": "$cluster",
+        "description": "the maximum size of a blob to be cached on the local disk (com.coremedia<type=CapConnection, application=coremedia><>MaxCachedBlobSize)",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 1,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "super-light-blue",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 0,
+          "y": 15
+        },
+        "id": 13,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_CapConnection_MaxCachedBlobSize{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"}",
+            "interval": "",
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "MaxCachedBlobSize",
+        "type": "stat"
+      },
+      {
+        "datasource": "$cluster",
+        "description": "the maximum number of primary events that are fetched in one chunk when attaching a listener to the content repository (com.coremedia<type=CapConnection, application=blueprint><>EventChunkSize)",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "super-light-blue",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 0,
+          "y": 18
+        },
+        "id": 25,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_CapConnection_EventChunkSize{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"}",
+            "interval": "",
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "EventChunkSize",
+        "type": "stat"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 9,
+          "x": 5,
+          "y": 18
+        },
+        "hiddenSeries": false,
+        "id": 17,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(com_coremedia_CapConnection_BlobStreamingThreads{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",kubernetes_pod_name=~\"$pod\"})",
+            "interval": "",
+            "legendFormat": "Threads",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Blob Streaming Threads",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:229",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:230",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$cluster",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 9,
+          "x": 14,
+          "y": 18
+        },
+        "hiddenSeries": false,
+        "id": 31,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.5",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:284",
+            "alias": "HeapCache Miss",
+            "color": "#B877D9"
+          },
+          {
+            "$$hashKey": "object:285",
+            "alias": "BlobCache Miss",
+            "color": "#5794F2"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "avg(rate(com_coremedia_CapConnection_HeapCacheFaults{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",kubernetes_pod_name=~\"$pod\"}[3m]))",
+            "interval": "",
+            "legendFormat": "HeapCache Miss",
+            "queryType": "randomWalk",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "avg(rate(com_coremedia_CapConnection_BlobCacheFaults{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\",kubernetes_pod_name=~\"$pod\"}[3m]))",
+            "interval": "",
+            "legendFormat": "BlobCache Miss",
+            "refId": "B"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Cache Misses [3m]",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:298",
+            "format": "none",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:299",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "datasource": "$cluster",
+        "description": "the number of lightweight sessions (com.coremedia<type=CapConnection, application=blueprint><>NumberOfSUSessions)",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "super-light-blue",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 0,
+          "y": 21
+        },
+        "id": 23,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_CapConnection_NumberOfSUSessions{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"}\r",
+            "instant": false,
+            "interval": "",
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "NumberOfSUSessions",
+        "type": "stat"
+      },
+      {
+        "datasource": "$cluster",
+        "description": "the maximum time that an event retrieval call waits at the Content Server, in milliseconds (com.coremedia<type=CapConnection, application=blueprint><>EventRetrievalDelayMS)",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 1,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "super-light-blue",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 5,
+          "x": 0,
+          "y": 24
+        },
+        "id": 27,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.5",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "com_coremedia_CapConnection_EventRetrievalDelayMS{kubernetes_namespace=\"$namespace\",app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"}",
+            "interval": "",
+            "legendFormat": "{{kubernetes_pod_name}}",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Max EventRetrievalDelay",
+        "type": "stat"
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "Prometheus",
+            "value": "Prometheus"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "cluster",
+          "options": [],
+          "query": "prometheus",
+          "queryValue": "",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "cmcc",
+            "value": "cmcc"
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(com_coremedia_Cache_Classes_Capacity{}, kubernetes_namespace)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Namespace",
+          "multi": false,
+          "name": "namespace",
+          "options": [
+            {
+              "selected": true,
+              "text": "cmcc",
+              "value": "cmcc"
+            }
+          ],
+          "query": {
+            "query": "label_values(com_coremedia_Cache_Classes_Capacity{}, kubernetes_namespace)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "cmcc",
+            "value": "cmcc"
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(com_coremedia_CapConnection_Open{kubernetes_namespace=\"$namespace\"},app_kubernetes_io_instance)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Instance",
+          "multi": false,
+          "name": "instance",
+          "options": [
+            {
+              "selected": true,
+              "text": "cmcc",
+              "value": "cmcc"
+            }
+          ],
+          "query": {
+            "query": "label_values(com_coremedia_CapConnection_Open{kubernetes_namespace=\"$namespace\"},app_kubernetes_io_instance)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "cae-feeder-preview",
+            "value": "cae-feeder-preview"
+          },
+          "datasource": "${cluster}",
+          "definition": "label_values(com_coremedia_CapConnection_Open{app_kubernetes_io_instance=\"$instance\"}, app_kubernetes_io_name)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "app",
+          "options": [
+            {
+              "selected": false,
+              "text": "cae-feeder-live",
+              "value": "cae-feeder-live"
+            },
+            {
+              "selected": true,
+              "text": "cae-feeder-preview",
+              "value": "cae-feeder-preview"
+            },
+            {
+              "selected": false,
+              "text": "cae-live-cmcc",
+              "value": "cae-live-cmcc"
+            },
+            {
+              "selected": false,
+              "text": "cae-preview",
+              "value": "cae-preview"
+            },
+            {
+              "selected": false,
+              "text": "content-feeder",
+              "value": "content-feeder"
+            },
+            {
+              "selected": false,
+              "text": "elastic-worker",
+              "value": "elastic-worker"
+            },
+            {
+              "selected": false,
+              "text": "headless-server-live-cmcc",
+              "value": "headless-server-live-cmcc"
+            },
+            {
+              "selected": false,
+              "text": "headless-server-preview",
+              "value": "headless-server-preview"
+            },
+            {
+              "selected": false,
+              "text": "studio-server",
+              "value": "studio-server"
+            },
+            {
+              "selected": false,
+              "text": "user-changes",
+              "value": "user-changes"
+            },
+            {
+              "selected": false,
+              "text": "workflow-server",
+              "value": "workflow-server"
+            }
+          ],
+          "query": {
+            "query": "label_values(com_coremedia_CapConnection_Open{app_kubernetes_io_instance=\"$instance\"}, app_kubernetes_io_name)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": ".*",
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "$cluster",
+          "definition": "label_values(com_coremedia_CapConnection_Open{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"},kubernetes_pod_name)",
+          "description": null,
+          "error": null,
+          "hide": 2,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "pod",
+          "options": [],
+          "query": {
+            "query": "label_values(com_coremedia_CapConnection_Open{app_kubernetes_io_instance=\"$instance\",app_kubernetes_io_name=\"$app\"},kubernetes_pod_name)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-3h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "",
+    "title": "CAP Client",
+    "uid": "el5UAo2Mz",
+    "version": 1
+  }
